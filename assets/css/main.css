@@ -1,5 +1,5 @@
 @import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
+@import url("https://cdn.rawgit.com/rastikerdar/vazir-font/v21.2.0/dist/font-face.css");
 
 /*
 	Identity by HTML5 UP
@@ -154,11 +154,10 @@
 
 	body, input, select, textarea {
 		color: #414f57;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: "Vazir", Helvetica, sans-serif;
 		font-size: 14pt;
 		font-weight: 300;
 		line-height: 2;
-		letter-spacing: 0.2em;
 		text-transform: uppercase;
 	}
 
@@ -224,7 +223,7 @@
 
 	h1 {
 		font-size: 1.85em;
-		letter-spacing: 0.22em;
+		
 		margin: 0 0 0.525em 0;
 	}
 
