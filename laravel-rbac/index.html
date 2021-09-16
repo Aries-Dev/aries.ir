@@ -21,15 +21,46 @@
         .ltr {
             direction: ltr !important;
         }
+
+        .anchor {
+            color: #000000;
+            text-decoration: none;
+        }
     </style>
 
     <title>مستندات پکیج laravel-rbac</title>
   </head>
   <body class="bg-secondary bg-opacity-10">
-    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
-        <h1 class="px-4 py-3 fs-3">
-            پکیج مدیریت نقش و دسترسی - rbac
-        </h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rtl sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#intro">معرفی</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#install">نصب</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#setup">راه اندازی و استفاده</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#create">ایجاد نقش و دسترسی و تخصیص آن به کاربر</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#usage">استفاده</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container mt-4 rtl noto">
+        <a class="anchor" id="intro">
+            <h1 class="px-4 py-3 fs-3">
+                پکیج مدیریت نقش و دسترسی - rbac
+            </h1>
+        </a>
         <hr />
         <p class="py-3">
             پکیج <code class="bg-secondary bg-opacity-10 p-1 rounded-1">laravel-rbac</code> جهت ایجاد نقش کاربری و سطوح دسترسی برای هر کاربر طراحی شده.
@@ -37,10 +68,12 @@
             برای مثال می‌توانید کاربری با نقش مدیر کل تعریف کنید که به تمام قسمت‌های سایت دسترسی داشته باشد و کاربر نویسنده فقط به بخش مدیریت محتوا دسترسی داشته باشد.
         </p>
     </div>
-    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
-        <h2 class="px-4 py-1 fs-4">
-            نصب
-        </h2>
+    <div class="container mt-4 rtl noto">
+        <a id="install" class="anchor">
+            <h2 class="px-4 py-1 fs-4">
+                نصب
+            </h2>
+        </a>
         <hr />
         <p class="py-3">
             برای نصب پکیج از طریق <code class="bg-secondary bg-opacity-10 p-1 rounded-1">composer</code> اقدام کنید
@@ -51,7 +84,7 @@
             composer install aries/laravel-rbac
         </code>
     </div>
-    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
+    <div class="container mt-4 rtl noto">
         <p class="py-3">سپس جدول‌های مورد نیاز در دیتابیس را با دستور زیر بسازید:</p>
     </div>
     <div class="container">
@@ -60,10 +93,12 @@
         </code>
         <hr />
     </div>
-    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
-        <h2 class="px-4 py-1 fs-4">
-            راه اندازی و استفاده
-        </h2>
+    <div class="container mt-4 rtl noto">
+        <a id="setup" class="anchor">
+            <h2 class="px-4 py-1 fs-4">
+                راه اندازی و استفاده
+            </h2>
+        </a>
         <hr />
         <p class="py-3">
             برای استفاده لازم است که تغییراتی در مدل <code class="bg-secondary bg-opacity-10 p-1 rounded-1">User</code> خود ایجاد کنید.
@@ -85,5 +120,117 @@ class User extends RbacUser
             </pre>
         </code>
     </div>
+    <div class="container mt-4 rtl noto">
+        <a id="create" class="anchor">
+            <h3 class="py-1 px-4 fs-5">
+                ایجاد نقش و دسترسی و تخصیص آن به کاربر
+            </h3>
+        </a>
+        <hr />
+        <p>
+            برای ایجاد یک سطح دسترسی مانند مدل‌های استاندارد لاراول به شیوه‌ی زیر عمل می‌کنیم:
+        </p>
+    </div>
+    <div class="container">
+        <code>
+            <pre>
+$user = App\Models\User::first();
+
+$user->roles()->create([
+    'name' => 'role-name',
+    'label' => 'optional role label'
+]);
+
+            </pre>
+        </code>
+    </div>
+    <div class="container mt-4 rtl noto">
+        <p>
+            مطابق کد بالا کاربر انتخاب شده دارای نقش کاربری <code class="bg-secondary bg-opacity-10 p-1 rounded-1">role-name</code> است.
+        </p>
+        <p>
+            همچنین می‌توانید با روش زیر یک یا چند نقش کاربری از پیش ایجاد شده را انتخاب کنید و به کاربر مورد نظرتان بدهید:
+        </p>
+    </div>
+    <div class="container">
+        <code>
+            <pre>
+$user = App\Models\User::first();
+
+$roles = Aries\LaravelRbac\Models\Role::all()->pluck('id')->toArray();
+
+$user->roles()->attach($roles);
+            </pre>
+        </code>
+    </div>
+    <div class="container mt-4 rtl noto">
+        <p>
+            برای ایجاد سطح دسترسی نیز مانند نقش کاربری به شیوه‌ی زیر عمل می‌کنیم:
+        </p>
+    </div>
+    <div class="container">
+        <code>
+            <pre>
+$ability = Aries\LaravelRbac\Models\Ability::create([
+    'name' => 'ability-name',
+    'label' => 'optional ability label'
+]);
+            </pre>
+        </code>
+    </div>
+    <div class="container mt-4 rtl noto">
+        <p>
+            همچنین با روش زیر می‌توانید یک نقش کاربری انتخاب کرده و یک سطح دسترسی جدید برای آن ایجاد کنید:
+        </p>
+    </div>
+    <div class="container">
+        <code>
+            <pre>
+$role = Aries\LaravelRbac\Models\Role::first();
+
+$role->abilities()->create([...]);
+            </pre>
+        </code>
+    </div>
+    <div class="container mt-4 rtl noto">
+        <p>
+            و یا یک یا چند سطح دسترسی از پیش ایجاد شده را انتخاب کنید و به نقش کاربری مورد نظر الحاق کنید:
+        </p>
+    </div>
+    <div class="container">
+        <code>
+            <pre>
+$abilities = Aries\LaravelRbac\Models\Ability::all()->pluck('id')->toArray();
+
+$role = Aries\LaravelRbac\Models\Role::first();
+
+$role->abilities()->attach($abilities);
+            </pre>
+        </code>
+    </div>
+    <div class="container mt-4 rtl noto">
+        <a id="usage" class="anchor">
+            <h3 class="py-1 px-4 fs-4">
+                استفاده
+            </h3>
+        </a>
+        <hr />
+        <p>
+            این پکیج به صورت خودکار برای هر سطح دسترسی یک Gate ایجاد می‌کند و نیاز نیست خودتان به صورت دستی Gate و Policy ایجاد کنید. 
+            <br />
+            برای استفاده از آن <a href="https://laravel.com/docs/authorization" target="_blank">مستندات Authorization لاراول را مطالعه کنید.</a>
+        </p>
+        <hr />
+    </div>
+
+    <div class="container mx-4">
+        <div class="d-flex justify-content-center">
+            <a href="https://github.com/iMohammadd/laravel-rbac">Github</a>
+            <span> | </span>
+            <a href="https://packagist.org/packages/aries/laravel-rbac">Packagist</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   </body>
 </html>
