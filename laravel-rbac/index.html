@@ -1,12 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hello doc</h1>
-</body>
+<!doctype html>
+<html lang="fa-IR">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <style>
+        .noto {
+            font-family: "Noto Sans Arabic";
+        }
+        .rtl {
+            direction: rtl;
+        }
+
+        .ltr {
+            direction: ltr !important;
+        }
+    </style>
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="bg-secondary bg-opacity-10">
+    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
+        <h1 class="px-4 py-3 fs-3">
+            پکیج مدیریت نقش و دسترسی - rbac
+        </h1>
+        <hr />
+        <p class="py-3">
+            پکیج <code class="bg-secondary bg-opacity-10 p-1 rounded-1">laravel-rbac</code> جهت ایجاد نقش کاربری و سطوح دسترسی برای هر کاربر طراحی شده.
+            <br />
+            برای مثال می‌توانید کاربری با نقش مدیر کل تعریف کنید که به تمام قسمت‌های سایت دسترسی داشته باشد و کاربر نویسنده فقط به بخش مدیریت محتوا دسترسی داشته باشد.
+        </p>
+    </div>
+    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
+        <h2 class="px-4 py-1 fs-4">
+            نصب
+        </h2>
+        <hr />
+        <p class="py-3">
+            برای نصب پکیج از طریق <code class="bg-secondary bg-opacity-10 p-1 rounded-1">composer</code> اقدام کنید
+        </p>
+    </div>
+    <div class="container">
+        <code>
+            composer install aries/laravel-rbac
+        </code>
+    </div>
+    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
+        <p class="py-3">سپس جدول‌های مورد نیاز در دیتابیس را با دستور زیر بسازید:</p>
+    </div>
+    <div class="container">
+        <code>
+            php artisan migrate
+        </code>
+        <hr />
+    </div>
+    <div class="container bg-white rounded-2 shadow-sm mt-4 rtl noto">
+        <h2 class="px-4 py-1 fs-4">
+            راه اندازی و استفاده
+        </h2>
+        <hr />
+        <p class="py-3">
+            برای استفاده لازم است که تغییراتی در مدل <code class="bg-secondary bg-opacity-10 p-1 rounded-1">User</code> خود ایجاد کنید.
+            <br />
+            مدل <code class="bg-secondary bg-opacity-10 p-1 rounded-1">User</code> باید از <code class="bg-secondary bg-opacity-10 p-1 rounded-1">Aries\LaravelRbac\Models\User</code> ارث بری کند، برای این کار مدل <code class="bg-secondary bg-opacity-10 p-1 rounded-1">User</code> را به شکل زیر تغییر دهید:
+        </p>
+    </div>
+    <div class="container">
+        <code>
+            <pre>
+&lt;?php
+namespace App/Models;
+...
+use Aries\LaravelRbac\Models\User as RbacUser;
+...
+class User extends RbacUser
+{
+...
+            </pre>
+        </code>
+    </div>
+  </body>
 </html>
